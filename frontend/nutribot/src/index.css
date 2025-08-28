@@ -1,0 +1,176 @@
+/* Base + Theme */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+  transition: background 0.35s ease, color 0.35s ease;
+}
+
+/* App shell */
+.app {
+  max-width: 760px;
+  margin: 32px auto;
+  min-height: calc(100vh - 64px);
+  background: rgba(255,255,255,0.9);
+  border-radius: 22px;
+  box-shadow: 0 18px 40px rgba(90, 76, 219, 0.18);
+  backdrop-filter: blur(10px);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.4);
+}
+
+/* Dark mode */
+.app.dark {
+  background: rgba(34, 33, 51, 0.92);
+  color: #eef0ff;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+}
+.app.dark body { background: #1e1e2f; }
+
+/* Top bar */
+.topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 18px;
+  background: linear-gradient(90deg, rgba(106,17,203,0.12), rgba(37,117,252,0.12));
+  border-bottom: 1px solid rgba(106, 17, 203, 0.18);
+}
+.brand {
+  font-weight: 800; letter-spacing: 0.4px;
+  background: linear-gradient(90deg, #6a11cb, #2575fc);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  font-size: 20px;
+}
+.actions { display: flex; gap: 10px; }
+
+/* Buttons */
+.btn {
+  border: 0; border-radius: 12px; cursor: pointer; font-weight: 600;
+  padding: 10px 14px; transition: transform 0.15s ease, box-shadow 0.25s ease, opacity 0.25s;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
+.btn.ghost {
+  background: rgba(255,255,255,0.7);
+  box-shadow: 0 6px 16px rgba(106,17,203,0.15);
+}
+.app.dark .btn.ghost {
+  background: rgba(255,255,255,0.12);
+  color: #e6e8ff;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+}
+.btn.send {
+  background: linear-gradient(135deg, #ff9966, #ff5e62);
+  color: #fff; border-radius: 14px; padding: 12px 16px;
+  box-shadow: 0 10px 20px rgba(255,94,98,0.35);
+}
+.btn.send:hover { transform: translateY(-1px) scale(1.02); }
+
+/* Chat area */
+.chat {
+  padding: 18px;
+  display: flex; flex-direction: column;
+  gap: 12px; overflow-y: auto;
+  background: linear-gradient(135deg, #fafafa, #f3f1fb);
+}
+.app.dark .chat {
+  background: linear-gradient(135deg, #242336, #1e1e2f);
+}
+
+/* Bubbles */
+.bubble {
+  max-width: 78%;
+  padding: 12px 16px;
+  border-radius: 18px;
+  line-height: 1.45;
+  font-size: 15px;
+  animation: slideUp 0.32s ease, glowIn 0.7s ease;
+  word-wrap: break-word;
+}
+
+/* User bubble: vibrant cool gradient */
+.bubble.user {
+  align-self: flex-end; color: #fff;
+  background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+  border-bottom-right-radius: 6px;
+  box-shadow: 0 10px 18px rgba(0, 114, 255, 0.28);
+}
+
+/* Bot bubble: soft cyan/teal gradient */
+.bubble.bot {
+  align-self: flex-start; color: #0e1726;
+  background: linear-gradient(135deg, #b2fefa 0%, #e6f7ff 100%);
+  border-bottom-left-radius: 6px;
+  box-shadow: 0 10px 18px rgba(13, 180, 175, 0.22);
+}
+.app.dark .bubble.bot {
+  color: #e9ecff;
+  background: linear-gradient(135deg, rgba(99,224,220,0.2), rgba(180,198,255,0.18));
+  border: 1px solid rgba(160,180,255,0.18);
+}
+
+/* Points list inside bot reply */
+.points { padding-left: 18px; margin: 0; }
+.points li {
+  margin: 6px 0; animation: fadeIn 0.28s ease;
+  list-style-type: "•  ";
+}
+
+/* Typing indicator (three dots) */
+.bubble.typing {
+  display: inline-flex; gap: 6px; align-items: center;
+}
+.bubble.typing span {
+  width: 7px; height: 7px; border-radius: 50%; background: #0e1726;
+  opacity: 0.6; animation: typing 1.2s infinite;
+}
+.bubble.typing span:nth-child(2) { animation-delay: 0.15s; }
+.bubble.typing span:nth-child(3) { animation-delay: 0.3s; }
+.app.dark .bubble.typing span { background: #e9ecff; }
+
+/* Input row */
+.inputrow {
+  border-top: 1px solid rgba(106,17,203,0.15);
+  padding: 12px; display: flex; gap: 10px; background: rgba(255,255,255,0.75);
+}
+.app.dark .inputrow {
+  background: rgba(15,15,24,0.55);
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.inputrow input {
+  flex: 1; padding: 12px 14px; border-radius: 14px; outline: none;
+  border: 1px solid rgba(124, 112, 255, 0.28);
+  background: #fff;
+  transition: box-shadow 0.25s ease, border 0.25s ease;
+}
+.inputrow input:focus {
+  border-color: #7c70ff;
+  box-shadow: 0 0 0 6px rgba(124,112,255,0.12);
+}
+.app.dark .inputrow input {
+  background: rgba(255,255,255,0.06);
+  color: #eef0ff;
+  border-color: rgba(255,255,255,0.14);
+}
+
+/* Animations */
+@keyframes typing {
+  0% { transform: translateY(0); opacity: .3; }
+  50% { transform: translateY(-3px); opacity: 1; }
+  100% { transform: translateY(0); opacity: .3; }
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes glowIn {
+  from { box-shadow: 0 0 0 rgba(0,0,0,0); }
+  to   { box-shadow: 0 10px 18px rgba(0,0,0,0.06); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
