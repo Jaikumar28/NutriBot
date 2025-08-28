@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 
 const llm = new ChatGoogleGenerativeAI({
   model: "gemini-1.5-flash",
-  apiKey: "AIzaSyAhMaykuT5pTeVUPJkhBtS_c20zXWSkocY",
+  apiKey: "Your Gemini Key",
   temperature: 0.5,
 });
 
